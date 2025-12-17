@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<h1>Вітаю {{ request.user }} в вашому анонімному світі!</h1>
+<h2>Ваша підписка: <em>{{ request.user.service.subscription.name }}</em></h2>
+
+<h3>IPv4 local:<em>{{ request.user.service.ipv_4_local }}</em></h3>
+<h3>IPv4 external:<em>{{ request.user.service.ipv_4_ext }}</em></h3>
+<h3>IPv6:<em>{{ request.user.service.ipv_6 }}</em></h3>
+
+<h6>Locations:<em>
+    {% for location in request.user.service.subscription.locations.all %}
+        {{ location }},
+    {% endfor %}
+</em></h6>
+<button id="myIdButton" class="myButton btn btn-success">Тиць сюди, щоб почати!</button>
+<div class="message"></div>
+<script src="{% static 'js/index.js' %}"></script>
+{% endblock content %}
