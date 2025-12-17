@@ -47,9 +47,9 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 SESSION_COOKIE_AGE = 1209600  # Два тижні в секундах
 
