@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 
+import dj_database_url
 from pymysql import install_as_MySQLdb
 from dotenv import load_dotenv
 
@@ -113,17 +114,11 @@ WSGI_APPLICATION = 'VPN_Service.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': os.getenv("ENGINE"),
-        'NAME': BASE_DIR / "db.sqlite3",
-        # 'HOST': os.getenv("HOST"),
-        # 'PORT': os.getenv("PORT"),
-        # 'USER': os.getenv("USER"),
-        # 'PASSWORD': os.getenv("PASSWORD"),
-        # 'OPTIONS': {
-        #     'sslmode': 'require'
-        # },
-    }
+    'default': dj_database_url.config(
+        default=os.getenv("DATABASE_URL"),
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
 
